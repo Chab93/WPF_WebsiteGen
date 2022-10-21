@@ -20,14 +20,14 @@ namespace WpfApp1
             /*
              * De olika egenskaperna (datat) i varje objekt
              */
-            string[] messagesToClass, techniques;
+            List<string> messagesToClass, techniques;
             string className;
             string kurser = "";
 
             /*
              * En konstruktor som tillåter oss att lägga in egen data i objektens egenskaper
              */
-            public WebsiteGenerator(string className, string[] messageToClass, string[] techniques)
+            public WebsiteGenerator(string className, List<string> messageToClass, List<string> techniques)
             {
                 this.className = className;
                 this.messagesToClass = messageToClass;
@@ -42,7 +42,7 @@ namespace WpfApp1
             {
                 return "<!DOCTYPE html>\n<html>\n<body>\n<main>\n";
             }
-            string printWelcome(string className, string[] message)
+            string printWelcome(string className, List<string> message)
             {
                 string welcome = $"<h1> Välkomna {className}! </h1>";
 
@@ -53,7 +53,7 @@ namespace WpfApp1
                     welcomeMessage += $"\n<p><b> Meddelande: </b> {msg} </p>";
                 }
 
-                return welcome + welcomeMessage;
+                return welcome + welcomeMessage + "\n";
             }
             string printKurser()
             {
@@ -136,7 +136,7 @@ namespace WpfApp1
             /*
              * En utility metod
              */
-            string courseGenerator(string[] techniques)
+            string courseGenerator(List<string> techniques)
             {
 
                 foreach (string technique in techniques)
@@ -162,7 +162,7 @@ namespace WpfApp1
              * Vi vill lägga in alla del egenskaper som behövs i base-klassen vi ärvde ifrån
              * Och också lägga in en färg (data) i vår nya egenskap
              */
-            public StyledWebsiteGenerator(string className, string color, string[] messageToClass, string[] techniques) : base(className, messageToClass, techniques)
+            public StyledWebsiteGenerator(string className, string color, List<string> messageToClass, List<string> techniques) : base(className, messageToClass, techniques)
             {
                 this.color = color;
             }

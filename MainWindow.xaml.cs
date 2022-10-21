@@ -27,19 +27,26 @@ namespace WpfApp1
     {
         string choice = "";
         string fileName = "";
+
+        List<string> messagesToClass = new List<string>{ "Glöm inte att övning ger färdighet!", "Öppna boken på sida 257." };
+
+        string colorStyling;
+
+        List<string> techniques = File.ReadAllLines("techniques.txt").ToList();
+        public string[] colors { get; set; }
+        public string selectedColor = "";
+
         public MainWindow()
         {
             InitializeComponent();
+
+            colors = new string[] { "Red", "Blue", "Green", "Yellow", "Purple" };
+            DataContext = this;
+
         }
 
         private void GenerateWebsite_Click(object sender, RoutedEventArgs e)
         {
-            string[] messagesToClass = { "Glöm inte att övning ger färdighet!", "Öppna boken på sida 257." };
-
-            string colorStyling;
-
-            string[] techniques = File.ReadAllLines("techniques.txt");
-
             if (File.Exists("color-styling"))
             {
                 colorStyling = File.ReadAllText("color-styling");
@@ -108,7 +115,62 @@ namespace WpfApp1
 
         private void ComboBoxColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Selection.Text = ComboBoxColor.Text;
+            if (EnterMessages.Text.Length.Equals(0) || EnterTechniques.Text.Length.Equals(0) || ComboBoxColor.SelectedItem == null)
+            {
+                GenerateMANWebsite.IsEnabled = false;
+            }
+            else
+            {
+                GenerateMANWebsite.IsEnabled = true;
+            }
+
+            Selection.Text = ComboBoxColor.SelectedItem.ToString();
+        }
+
+        private void GenerateMANWebsite_Click(object sender, RoutedEventArgs e)
+        {
+            string manColorStyling = ComboBoxColor.SelectedItem.ToString();
+            List<string> manTechniques = EnterTechniques.Text.Split(Environment.NewLine).ToList();
+            List<string> manMessagesToClass = EnterMessages.Text.Split(Environment.NewLine).ToList();
+
+            WebsiteGeneratorWPF.StyledWebsiteGenerator managerWebsite = new WebsiteGeneratorWPF.StyledWebsiteGenerator("ITHS Dist 2022", manColorStyling, manMessagesToClass, manTechniques);
+
+            List<string> website1 = managerWebsite.PrintPage();
+
+            string websiteString = "";
+
+            foreach (string s in website1)
+            {
+                websiteString += s;
+            }
+
+            WebsiteOutput.Text = websiteString;
+            OutoutForDev.Text = websiteString;
+
+        }
+
+        private void EnterMessages_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (EnterMessages.Text.Length.Equals(0) || EnterTechniques.Text.Length.Equals(0) || ComboBoxColor.SelectedItem == null)
+            {
+                GenerateMANWebsite.IsEnabled = false;
+            }
+            else
+            {
+                GenerateMANWebsite.IsEnabled = true;
+            }
+        }
+
+        private void EnterTechniques_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (EnterMessages.Text.Length.Equals(0) || EnterTechniques.Text.Length.Equals(0) || ComboBoxColor.SelectedItem == null)
+            {
+                GenerateMANWebsite.IsEnabled = false;
+            }
+            else
+            {
+                GenerateMANWebsite.IsEnabled = true;
+            }
         }
     }
 }

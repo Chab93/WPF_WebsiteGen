@@ -18,18 +18,13 @@
             <TabItem Header="Manager WebCreator">
                 <StackPanel>
                     <TextBlock Text="Messages:" FontSize="12" FontWeight="Bold"/>
-                    <TextBox x:Name="EnterMessages" Height="90" Width="250" HorizontalAlignment="Left" Margin="0,0,0,20" AcceptsReturn="True"/>
+                    <TextBox x:Name="EnterMessages" Height="90" Width="250" HorizontalAlignment="Left" Margin="0,0,0,20" AcceptsReturn="True" TextChanged="EnterMessages_TextChanged"/>
                     <TextBlock Text="Techniques:" FontSize="12" FontWeight="Bold"/>
-                    <TextBox x:Name="EnterTechniques" Height="90" Width="250" HorizontalAlignment="Left" Margin="0,0,0,20" AcceptsReturn="True"/>
+                    <TextBox x:Name="EnterTechniques" Height="90" Width="250" HorizontalAlignment="Left" Margin="0,0,0,20" AcceptsReturn="True" TextChanged="EnterTechniques_TextChanged"/>
                     <TextBlock Text="Colors:" FontSize="12" FontWeight="Bold"/>
-                    <ComboBox x:Name="ComboBoxColor" Width="250" HorizontalAlignment="Left" SelectionChanged="ComboBoxColor_SelectionChanged">
-                        <ComboBoxItem Content="Red" Foreground="Red"/>
-                        <ComboBoxItem Content="Green" Foreground="Green"/>
-                        <ComboBoxItem Content="Blue" Foreground="Blue"/>
-                        <ComboBoxItem Content="Yellow" Foreground="Yellow"/>
-                        <ComboBoxItem Content="Purple" Foreground="Purple"/>
-                    </ComboBox>
+                    <ComboBox x:Name="ComboBoxColor" Width="250" HorizontalAlignment="Left" ItemsSource="{Binding colors}" SelectionChanged="ComboBoxColor_SelectionChanged"/>
                     <TextBlock x:Name="Selection"/>
+                    <Button x:Name="GenerateMANWebsite" Content="Generate website" Width="250" HorizontalAlignment="Left" Margin="0,100,0,0" Click="GenerateMANWebsite_Click" IsEnabled="False"/>
                 </StackPanel>
             </TabItem>
             <TabItem Header="Result">
