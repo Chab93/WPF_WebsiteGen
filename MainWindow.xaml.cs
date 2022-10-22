@@ -123,8 +123,6 @@ namespace WpfApp1
             {
                 GenerateMANWebsite.IsEnabled = true;
             }
-
-            Selection.Text = ComboBoxColor.SelectedItem.ToString();
         }
 
         private void GenerateMANWebsite_Click(object sender, RoutedEventArgs e)

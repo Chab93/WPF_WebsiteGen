@@ -23,7 +23,6 @@
                     <TextBox x:Name="EnterTechniques" Height="90" Width="250" HorizontalAlignment="Left" Margin="0,0,0,20" AcceptsReturn="True" TextChanged="EnterTechniques_TextChanged"/>
                     <TextBlock Text="Colors:" FontSize="12" FontWeight="Bold"/>
                     <ComboBox x:Name="ComboBoxColor" Width="250" HorizontalAlignment="Left" ItemsSource="{Binding colors}" SelectionChanged="ComboBoxColor_SelectionChanged"/>
-                    <TextBlock x:Name="Selection"/>
                     <Button x:Name="GenerateMANWebsite" Content="Generate website" Width="250" HorizontalAlignment="Left" Margin="0,100,0,0" Click="GenerateMANWebsite_Click" IsEnabled="False"/>
                 </StackPanel>
             </TabItem>
